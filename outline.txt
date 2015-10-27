@@ -1,0 +1,26 @@
+MySQL training Outline
+What are SQL and MySQL? (~10 minutes)
+	High level discussion of what a database is and what tables are
+	Lightly touch on relational databases nosql
+	Sameer
+	
+Why would I use SQL? (~10 minutes)
+	advantages vs excel/other
+	need to make it clear that SQL sucks for analysis but is great for data and programmers
+	John
+
+How to use SQL? (~1+ hours)
+	Show the overall structure (databases, tables)
+	John
+	
+	SELECT and SHOW statements - train to use these.
+		SELECT, WHERE, LIMIT - John
+		GROUP BY, ORDER BY - Sameer
+	
+	
+		
+	Train how to use JOINS
+	John
+	
+	Subqueries, INSERT, CREATE, UPDATE. Explain that these exist and compare to excel. Don't train these
+	Completely ignore: keys, indices, engines, alter, etc. 
