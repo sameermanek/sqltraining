@@ -1,0 +1,163 @@
+############
+## Basic Query
+############
+SELECT * 
+FROM tutorial.yammer_users;
+
+# YWBAT: 
+# understand different data types that can be stored in a table, but each column stores one and only one data type
+# Understand that yammer_users is a table in the database tutorial
+# Understand that * refers to all fields and can be useful when exploring an unfamiliar table. 
+
+############
+## Select certain fields
+############
+SELECT user_id, company_id 
+FROM tutorial.yammer_users;
+
+SELECT user_id, created_at, language
+FROM tutorial.yammer_users;
+
+# YWBAT: 
+# select specific columns from a table
+
+############
+## Operators in the select statements
+############
+
+SELECT DISTINCT company_id
+FROM tutorial.yammer_users;
+
+SELECT DISTINCT company_id, language
+FROM tutorial.yammer_users;
+
+SELECT max(created_at)
+FROM tutorial.yammer_users;
+
+############
+## limit number of results
+############
+SELECT user_id, company_id 
+FROM tutorial.yammer_users 
+LIMIT 5;
+
+# YWBAT: 
+# select specific columns from a table
+
+
+############
+## Use logic statements in WHERE clause
+############
+SELECT * 
+FROM tutorial.yammer_users 
+WHERE language = 'japanese';
+
+SELECT * 
+FROM tutorial.yammer_users
+WHERE user_id < 12;
+
+SELECT * 
+FROM tutorial.yammer_users
+WHERE user_id > 3
+	AND user_id < 12;
+	
+SELECT *
+FROM tutorial.yammer_users
+WHERE user_id < 3
+	AND user_id > 12;
+
+SELECT * 
+FROM tutorial.yammer_users
+WHERE user_id >= 3
+WHERE user_id <= 12;
+
+SELECT * 
+FROM tutorial.yammer_users
+WHERE created_at <= '2013-01-02';
+
+SELECT * 
+FROM tutorial.yammer_users
+WHERE created_at <= 2013-01-14;
+
+SELECT * 
+FROM tutorial.yammer_users
+WHERE language in ('english','japanese');
+
+
+# YWBAT
+# Use WHERE statements like a boss
+
+
+############
+## ORDER BY
+############
+SELECT *
+FROM tutorial.yammer_users
+ORDER BY created_at;
+
+SELECT *
+FROM tutorial.yammer_users
+ORDER BY created_at DESC;
+
+
+SELECT *
+FROM tutorial.yammer_users
+WHERE language = 'french'
+ORDER BY created_at;
+
+SELECT * 
+FROM tutorial.yammer_users
+ORDER BY language, created_at;
+
+SELECT * 
+FROM tutorial.yammer_users
+ORDER BY company_id, language
+
+
+############
+## GROUP BY
+############
+SELECT company_id, count(user_id)
+FROM tutorial.yammer_users
+GROUP BY company_id;
+
+SELECT company_id, count(user_id) as users
+FROM tutorial.yammer_users
+GROUP BY company_id;
+
+SELECT company_id, count(user_id) as users
+FROM tutorial.yammer_users
+GROUP BY company_id
+ORDER BY users DESC;
+
+SELECT company_id, count(distinct language) as languages, min(created_at) as first_created, max(created_at) as latest_created
+FROM tutorial.yammer_users
+GROUP BY company_id;
+
+############
+## INNER JOINS
+############
+SELECT *
+FROM tutorial.yammer_users
+INNER JOIN tutorial.yammer_events
+	ON yammer_events.user_id = yammer_users.user_id
+ 
+SELECT yammer_users.user_id, yammer_users.company_id, yammer_users.language, yammer_events.location
+FROM tutorial.yammer_users
+INNER JOIN tutorial.yammer_events
+	ON yammer_events.user_id = yammer_users.user_id
+WHERE yammer_users.language = 'english' 
+	AND yammer_events.location != 'Japan'
+
+SELECT yammer_users.user_id, yammer_users.company_id, yammer_emails.occurred_at as email_time, yammer_emails.action as email_type
+FROM tutorial.yammer_users
+INNER JOIN tutorial.yammer_events
+	ON yammer_events.user_id = yammer_users.user_id
+INNER JOIN tutorial.yammer_emails 
+	ON yammer_emails.user_id = yammer_users.user_id
+
+
+
+
+
+
