@@ -157,6 +157,52 @@ INNER JOIN tutorial.yammer_emails
 	ON yammer_emails.user_id = yammer_users.user_id
 
 
+############
+## INSERT statements
+############
+# We can't actually run INSERT statements using the Mode Analytics tool, but here is an example:
+INSERT INTO tutorial.yammer_users
+	(user_id, created_at, company_id, language, activated_at, state) # The columns we want to insert into, in order. 
+VALUES
+	(10021, NOW(), 4414, 'english', NOW(), 'active'),
+	(10022, NOW(), 4414, 'japanese', NOW(), 'active');
+# Note that NOW() is a function that returns the current date and time
+
+# We could also link an INSERT statement with a SELECT statement, for example:
+INSERT INTO tutorial.yammer_users
+(user_id, created_at, company_id, language, activated_at, state)
+SELECT user_id, created_at, company_id, language, activate_at, state
+FROM tutorial.yammer_users
+WHERE user_id = 0;
+
+
+############
+## UPDATE statements
+############
+
+# This statement will set the pending users from company_id 36 to active
+# As well as update the activated_at field to the current time. 
+
+UPDATE tutorial.yammer_users
+SET state = 'active', 
+	activated_at = NOW()
+WHERE company_id = 36
+	AND state = 'pending';
+
+
+############
+## Creating new tables
+############
+
+
+CREATE TABLE tutorial.yammer_administrators
+	(user_id INT,
+	company_id INT,
+	permissions VARCHAR(16),
+	super_user TINYINT(1),
+	PRIMARY KEY (user_id, company_id)
+	)
+	)
 
 
 
