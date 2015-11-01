@@ -109,9 +109,9 @@ SELECT *
 FROM tutorial.yammer_users
 ORDER BY language, created_at;
 
-SELECT * 
+SELECT *
 FROM tutorial.yammer_users
-ORDER BY company_id, language
+ORDER BY language DESC, created_at ASC;
 
 
 ############
