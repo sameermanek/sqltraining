@@ -137,24 +137,7 @@ GROUP BY company_id;
 ############
 ## INNER JOINS
 ############
-SELECT *
-FROM tutorial.yammer_users
-INNER JOIN tutorial.yammer_events
-	ON yammer_events.user_id = yammer_users.user_id
- 
-SELECT yammer_users.user_id, yammer_users.company_id, yammer_users.language, yammer_events.location
-FROM tutorial.yammer_users
-INNER JOIN tutorial.yammer_events
-	ON yammer_events.user_id = yammer_users.user_id
-WHERE yammer_users.language = 'english' 
-	AND yammer_events.location != 'Japan'
 
-SELECT yammer_users.user_id, yammer_users.company_id, yammer_emails.occurred_at as email_time, yammer_emails.action as email_type
-FROM tutorial.yammer_users
-INNER JOIN tutorial.yammer_events
-	ON yammer_events.user_id = yammer_users.user_id
-INNER JOIN tutorial.yammer_emails 
-	ON yammer_emails.user_id = yammer_users.user_id
 
 
 ############
